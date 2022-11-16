@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Pearl-Calling</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="Image/pearl_Icon.jpg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="Image/pearl_Icon.jpg">
+    <link rel="icon" type="image/png" href="Image/pearl_Icon.jpg">
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td style="vertical-align:central">
+                <button id="btnStart" class="btn btn-primary" onclick="btnStart_click()">すたーと</button>
+                <button id="btnCalled" onclick="CalledFromJS" style="visibility:collapse"></button>
+            </td>
+            <td style="vertical-align:central">
+                <textarea class="form-control" rows="1" readonly style="resize:none"></textarea>
+            </td>
+        </tr>
+    </table>
+    <div id="clock" class="time dispObj" style="opacity:0;"></div>
+    <img id="battery" class="dispObj" src="Image/battery.png" width="60" style="position: absolute; top: 58px; z-index: 20; filter: invert(100%); opacity: 0;">
+    <img id="wifi" class="dispObj" src="Image/wifi.png" width="32" style="position: absolute; top: 72px; z-index: 20; filter: invert(100%); opacity: 0;">
+
+    <video class="movie dispObj" id="movie1" src="Movies\pearl_loop.mp4" playsinline autoplay muted loop style="opacity: 0;" onclick="movie_click()"></video>
+    <video class="movie" id="movie2" playsinline autoplay muted loop style="transition-duration: 500ms; opacity: 0;" onclick="movie_click()"></video>
+
+    <img id="endBtn" class="dispObj" src="Image/call_end.png" width="150" onclick="callEnd()" style="position: absolute; top: 750px; left: 50%; transform: translateX(-50%); opacity: 0; cursor: pointer">
+    <img id="selfy" class="dispObj" src="Image/selfy.jpeg" width="100" style="position: absolute; top: 75px; z-index: 10; opacity: 0;">
+    <div class="top-bar dispObj" style="opacity:0;"></div>
+</body>
+</html>

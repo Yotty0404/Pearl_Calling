@@ -56,14 +56,16 @@ function called() {
 
     var n = Math.random();
     document.getElementById('movie2').currentTime = 0;
+    $('#movie2').css('opacity', '1');
+    setTimeout(function () {
+        $('#movie2')[0].play();
+    }, 0);
     if (n < 0.3) {
         $('#movie2').attr('src', 'Movies/pearl_called2.mp4');
-        $('#movie2').css('opacity', '1');
         setTimeout(celledEnd, 3850);
     }
     else {
         $('#movie2').attr('src', 'Movies/pearl_called.mp4');
-        $('#movie2').css('opacity', '1');
         setTimeout(celledEnd, 3000);
     }
 
@@ -75,6 +77,7 @@ $(window).resize(function () {
 
 function celledEnd() {
     $('#movie2').css('opacity', '0');
+    $("#movie2")[0].pause()
     isCalled = false;
     rec();
 }

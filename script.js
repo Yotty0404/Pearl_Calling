@@ -27,16 +27,12 @@ function rec() {
     isCalled = false;
     isCalling = true;
 
-    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-    var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
-    var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+    window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+    var recognition = new webkitSpeechRecognition();
 
-    var recognition = new SpeechRecognition();
-
-    recognition.lang = 'ja-JP';
+    recognition.lang = 'ja';
     recognition.continuous = true;
     recognition.interimResults = true;
-    recognition.start();
 
     recognition.onresult = function (event) {
         var res = event.results[event.results.length - 1];
@@ -48,6 +44,8 @@ function rec() {
             called();
         }
     }
+
+    recognition.start();
 }
 
 function called() {

@@ -1,6 +1,12 @@
-
 var isCalled = false;
 var isCalling = false;
+
+window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+var recognition = new webkitSpeechRecognition();
+
+recognition.lang = 'ja';
+recognition.continuous = true;
+recognition.interimResults = true;
 
 function showClock() {
     let nowTime = new Date();
@@ -13,6 +19,7 @@ function showClock() {
 setInterval('showClock()', 1000);
 
 function btnStart_click() {
+    recognition.start();
     setLocation();
     dispObj();
     rec();
@@ -20,6 +27,7 @@ function btnStart_click() {
 
 function callEnd() {
     isCalling = false;
+    recognition.stop();
     hideObj();
 }
 
@@ -27,25 +35,16 @@ function rec() {
     isCalled = false;
     isCalling = true;
 
-    window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
-    var recognition = new webkitSpeechRecognition();
-
-    recognition.lang = 'ja';
-    recognition.continuous = true;
-    recognition.interimResults = true;
-
     recognition.onresult = function (event) {
         var res = event.results[event.results.length - 1];
         var str = res[0].transcript;
         var textarea = document.querySelector('textarea');
         textarea.value = str;
 
-        if (str.indexOf('パール') != -1 || str.indexOf('パル') != -1) {
+        if (str.indexOf('パール') != -1 || str.indexOf('パル') != -1 || str.indexOf('ぱる') != -1) {
             called();
         }
     }
-
-    recognition.start();
 }
 
 function called() {
